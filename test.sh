@@ -33,10 +33,10 @@ test () {
 	## lines below here test classification using the $1 input
 
 	#creates a hexdump of the generated classification file
-	hexdump -Cv classification > actual/$1/actual_classification_hexdump.txt
+	hexdump -Cv classification > actual/$1/classification_hexdump.txt
 
 	#compares the difference between the hexdumps and sends them to a diff file
-	diff actual/$1/actual_classification_hexdump.txt expected/$1/expected_classification_hexdump.txt > actual/$1/classification_hexdump.diff
+	diff actual/$1/classification_hexdump.txt expected/$1/expected_classification_hexdump.txt > actual/$1/classification_hexdump.diff
 
 	if [ -s actual/$1/classification_hexdump.diff ]; #if file isn't empty
 	then
