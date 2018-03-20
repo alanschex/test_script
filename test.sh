@@ -44,7 +44,7 @@ generate_diffs() {
 	  DIFFSIZE=$(wc -c <"actual/$1/$2_hexdump.diff")               # calculate size of the diff file
 		echo -e "${RED}$2 file is wrong:${NC}"
 		DIFFLINES=$(head -5 actual/$1/$2_hexdump.diff)               # prints out the first few lines of the diff
-		 echo -e "${LIGHTYELLOW}$DIFFLINES${NC}"
+		echo -e "${LIGHTYELLOW}$DIFFLINES${NC}"
 
 		WRONGLINES=$(grep \< -o actual/$1/$2_hexdump.diff | wc -l)
 		TOTALLINES=$(wc -l < expected/$1/expected_$2_hexdump.txt)
@@ -53,7 +53,7 @@ generate_diffs() {
 		PERCENT=$(echo $RIGHTLINES / $TOTALLINES \* 100| bc -l)      # calculates a percentage
 		PERCENT=$(echo $PERCENT | awk '{printf("%.1f\n",$1)}')       # Rounds to 1 decimal difference
 
-	echo -e "Estimated percent correct is: ${YELLOW}$PERCENT%${NC}"
+	  echo -e "Estimated percent correct is: ${YELLOW}$PERCENT%${NC}"
 
 	else
 		echo -e "${GREEN}$2 works with $1!${NC}"
