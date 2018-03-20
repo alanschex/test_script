@@ -17,13 +17,14 @@ NC='\033[0m'           # No color
 echo "Building..."
 make                   #compiles
 
+# $1 is the file input (sample_clusters, alternating, etc)
 test () {
 	echo -e "${WHITE}Beginning testing with $1 input...${NC}"
 	echo "Deleting your old queues..."
 	touch /dev/mqueue/blank                # gives the next line something to delete
 	rm /dev/mqueue/*                       # clears any queues
 	rm -rf map classification actual/$1/*  # deletes any previously generated files
-	./$EXECUTABLE inputs/$1                # runs project using $1 input
+	./$EXECUTABLE inputs/$1                # runs project using input passed in as the first argument
 
 	generate_diffs $1 classification       # generates the diffs for the classification file
 	generate_diffs $1 map                  # generates the diffs for the map file
